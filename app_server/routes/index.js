@@ -1,12 +1,14 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+const locationController = require('../controllers/locationController');
+const otherController = require('../controllers/otherController')
 
-/* GET home page. */
-const homepageController = (req, res, next) => {
-  res.render('index', { title: 'Express' });
-};
+/* Location pages */
+router.get('/', locationController.getLocationsList);
+router.get('/location', locationController.getLocationDetail);
+router.get('/location/review/new', locationController.addReview);
 
-/* GET home page. */
-router.get('/', homepageController)
+/* Other pages */
+router.get('/about',otherController.getAbout);
 
-module.exports = router;
+module.exports = router
